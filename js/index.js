@@ -8,7 +8,12 @@ window.onload = function() {
 
   var dt = new Date(Date.parse(JSON.parse(getItem(KEY_TIME))));
   if (dt) {
-    var limit = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() + 1, 4, 0);
+    var limit;
+    if (dt.getHours() < 4) {
+      limit = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), 4, 0);    
+    } else {
+      limit = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() + 1, 4, 0);
+    }
     var now = new Date();
 
     if (limit.getTime() < now.getTime()) {
